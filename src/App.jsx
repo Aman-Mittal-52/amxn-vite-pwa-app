@@ -8,18 +8,7 @@ function App() {
   const [installed, setInstalled] = useState(false)
 
   useEffect(() => {
-    // Remove existing favicon
-    const existingIcon = document.querySelector("link[rel~='icon']")
-    if (existingIcon) existingIcon.remove()
 
-    // Set new favicon after 4 seconds
-    const timer = setTimeout(() => {
-      const link = document.createElement('link')
-      link.rel = 'icon'
-      link.type = 'image/png'
-      link.href = '/logo/image.png'
-      document.head.appendChild(link)
-    }, 4000)
 
     const handler = (e) => {
       e.preventDefault()
@@ -35,7 +24,6 @@ function App() {
     })
 
     return () => {
-      clearTimeout(timer)
       window.removeEventListener('beforeinstallprompt', handler)
     }
   }, [])
